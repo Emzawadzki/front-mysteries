@@ -1,0 +1,23 @@
+{
+  "name": "front-mysteries",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "start:caching": "node ./caching/server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Emzawadzki/front-mysteries.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Emzawadzki/front-mysteries/issues"
+  },
+  "homepage": "https://github.com/Emzawadzki/front-mysteries#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "http-server": "^14.0.0"
+  }
+}
