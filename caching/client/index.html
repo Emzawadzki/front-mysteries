@@ -1,61 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Frontend Mysteries - Caching client</title>
-</head>
-<body>
-  <h1>Caching</h1>
-  <p>Server returning data is programmed to return the count of specific requests. This allows you to see when the request is cached (when its value is NOT changing)</p>
-  <fieldset>
-    <legend>No request cache defined</legend>
-    <p>The following request response is increasing, no matter the interval you click in - response is NOT being cached</p>
-    <dl>
-      <dt>First request response:</dt>
-         <dd id="js-first-no-cache-dd">&nbsp;</dd>
-      <dt>Following request response:</dt>
-         <dd id="js-folowing-no-cache-dd">&nbsp;</dd>
-    </dl>
-    <button id="js-no-cache-send">Send request</button>
-  </fieldset>
-  <fieldset>
-    <legend>Client 30-second cache-control</legend>
-    <p>The client (browser) is instructed to cache response for 30 seconds. Send first request and the countdown will start. During that time, request should be cached - response stays the same. After 30s time period, the counter should be increased - the cache "age" expired and request was sent to server once again.</p>
-    <p>You can see it working in two places:
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Frontend Mysteries - Caching client</title>
+  </head>
+  <body>
+    <h1>Caching</h1>
+    <p>
+      Server returning data is programmed to return the count of specific
+      requests. This allows you to see when the request is cached (when its
+      value is NOT changing)
+    </p>
+    <fieldset>
+      <legend>No request cache defined</legend>
+      <p>
+        The following request response is increasing, no matter the interval you
+        click in - response is NOT being cached
+      </p>
+      <dl>
+        <dt>First request response:</dt>
+        <dd id="js-first-no-cache-dd">&nbsp;</dd>
+        <dt>Following request response:</dt>
+        <dd id="js-folowing-no-cache-dd">&nbsp;</dd>
+      </dl>
+      <button id="js-no-cache-send">Send request</button>
+    </fieldset>
+    <fieldset>
+      <legend>Client 30-second cache-control</legend>
+      <p>
+        The client (browser) is instructed to cache response for 30 seconds.
+        Send first request and the countdown will start. During that time,
+        request should be cached - response stays the same. After 30s time
+        period, the counter should be increased - the cache "age" expired and
+        request was sent to server once again.
+      </p>
+      <p>You can see it working in two places:</p>
       <ul>
         <li>
           server logs (no following "/client-cache" requests are being logged)
         </li>
         <li>
-          browser dev tools - in network tab, next to request send, instead of response size, there should be an information about being "cached"
+          browser dev tools - in network tab, next to request send, instead of
+          response size, there should be an information about being "cached"
         </li>
       </ul>
-    </p>
-    <dl>
-      <dt>Time until first cache expiry:</dt>
-         <dd id="js-client-cache-timer">&nbsp;</dd>
-      <dt>First request response:</dt>
-         <dd id="js-first-client-cache-dd">&nbsp;</dd>
-      <dt>Following request response:</dt>
-         <dd id="js-folowing-client-cache-dd">&nbsp;</dd>
-    </dl>
-    <button id="js-client-cache-send">Send request</button>
-  </fieldset>
-  <fieldset>
-    <legend>Server 30-second cache-control</legend>
-    <p>Situation is the same as in client cache before - the only difference being the server "informing" the client to cache the response (note that we no longer send "Cache-control" header, but we receive one)</p>
-    <dl>
-      <dt>Time until first cache expiry:</dt>
-         <dd id="js-server-cache-timer">&nbsp;</dd>
-      <dt>First request response:</dt>
-         <dd id="js-first-server-cache-dd">&nbsp;</dd>
-      <dt>Following request response:</dt>
-         <dd id="js-folowing-server-cache-dd">&nbsp;</dd>
-    </dl>
-    <button id="js-server-cache-send">Send request</button>
-  </fieldset>
-  <script src="./app.js"></script>
-</body>
+      <dl>
+        <dt>Time until first cache expiry:</dt>
+        <dd id="js-client-cache-timer">&nbsp;</dd>
+        <dt>First request response:</dt>
+        <dd id="js-first-client-cache-dd">&nbsp;</dd>
+        <dt>Following request response:</dt>
+        <dd id="js-folowing-client-cache-dd">&nbsp;</dd>
+      </dl>
+      <button id="js-client-cache-send">Send request</button>
+    </fieldset>
+    <fieldset>
+      <legend>Server 30-second cache-control</legend>
+      <p>
+        Situation is the same as in client cache before - the only difference
+        being the server "informing" the client to cache the response (note that
+        we no longer send "Cache-control" header, but we receive one)
+      </p>
+      <dl>
+        <dt>Time until first cache expiry:</dt>
+        <dd id="js-server-cache-timer">&nbsp;</dd>
+        <dt>First request response:</dt>
+        <dd id="js-first-server-cache-dd">&nbsp;</dd>
+        <dt>Following request response:</dt>
+        <dd id="js-folowing-server-cache-dd">&nbsp;</dd>
+      </dl>
+      <button id="js-server-cache-send">Send request</button>
+    </fieldset>
+    <footer>
+      Sources:
+      <ol>
+        <li>
+          <a
+            href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cache-Control"
+            target="_blank"
+            rel="noopener noreferrer"
+            >MDN Cache-control</a
+          >
+        </li>
+        <li>
+          <a
+            href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Caching"
+            target="_blank"
+            rel="noopener noreferrer"
+            >MDN Caching</a
+          >
+        </li>
+      </ol>
+    </footer>
+    <script src="./app.js"></script>
+  </body>
 </html>
