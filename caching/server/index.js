@@ -17,6 +17,7 @@ const logRequest = (req) => {
 
 let noCacheRequestsCounter = 0;
 let clientCacheRequestsCounter = 0;
+let serverCacheRequestsCounter = 0;
 
 const server = http.createServer((req, res) => {
   logRequest(req);
@@ -40,6 +41,16 @@ const server = http.createServer((req, res) => {
           })
           res.end(JSON.stringify({
             count: clientCacheRequestsCounter
+          }));
+          break;
+        case "/server-cache":
+          serverCacheRequestsCounter++;
+          res.writeHead(200, {
+            "Content-Type": "application/json",
+            "Cache-Control": "max-age=30"
+          })
+          res.end(JSON.stringify({
+            count: serverCacheRequestsCounter
           }));
           break;
         // serve static files

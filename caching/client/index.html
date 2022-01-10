@@ -43,6 +43,19 @@
     </dl>
     <button id="js-client-cache-send">Send request</button>
   </fieldset>
+  <fieldset>
+    <legend>Server 30-second cache-control</legend>
+    <p>Situation is the same as above - the only difference being the server "informing" the client to cache the response (note that we no longer send "Cache-control" header, but we receive one)</p>
+    <dl>
+      <dt>Time until first cache expiry:</dt>
+         <dd id="js-server-cache-timer">&nbsp;</dd>
+      <dt>First request response:</dt>
+         <dd id="js-first-server-cache-dd">&nbsp;</dd>
+      <dt>Following request response:</dt>
+         <dd id="js-folowing-server-cache-dd">&nbsp;</dd>
+    </dl>
+    <button id="js-server-cache-send">Send request</button>
+  </fieldset>
   <script src="./app.js"></script>
 </body>
 </html>
