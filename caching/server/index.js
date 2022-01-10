@@ -11,9 +11,15 @@ const error404 = (res) => {
   res.end();
 };
 
+const logRequest = (req) => {
+  console.log(`[${serverName}] ${req.method} ${req.url}`);
+}
+
 let noCacheRequestsCounter = 0;
+let clientCacheRequestsCounter = 0;
 
 const server = http.createServer((req, res) => {
+  logRequest(req);
   let url = req.url;
   switch (req.method) {
     case "GET":
@@ -25,6 +31,15 @@ const server = http.createServer((req, res) => {
           })
           res.end(JSON.stringify({
             count: noCacheRequestsCounter
+          }));
+          break;
+        case "/client-cache":
+          clientCacheRequestsCounter++;
+          res.writeHead(200, {
+            "Content-Type": "application/json",
+          })
+          res.end(JSON.stringify({
+            count: clientCacheRequestsCounter
           }));
           break;
         // serve static files
