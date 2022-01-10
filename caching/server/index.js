@@ -11,11 +11,23 @@ const error404 = (res) => {
   res.end();
 };
 
+let noCacheRequestsCounter = 0;
+
 const server = http.createServer((req, res) => {
   let url = req.url;
   switch (req.method) {
     case "GET":
       switch (req.url) {
+        case "/no-cache":
+          noCacheRequestsCounter++;
+          res.writeHead(200, {
+            "Content-Type": "application/json",
+          })
+          res.end(JSON.stringify({
+            count: noCacheRequestsCounter
+          }));
+          break;
+        // serve static files
         case "/":
           url = "index.html";
         default: {
