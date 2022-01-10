@@ -8,6 +8,17 @@
 </head>
 <body>
   <h1>Caching</h1>
+  <fieldset>
+    <legend>No request cache defined</legend>
+    <p>If following request response is increasing - response is NOT being cached</p>
+    <dl>
+      <dt>First request response:</dt>
+         <dd id="js-first-no-cache-dd">&nbsp;</dd>
+      <dt>Following request response:</dt>
+         <dd id="js-folowing-no-cache-dd">&nbsp;</dd>
+    </dl>
+    <button id="js-no-cache-send">Send request</button>
+  </fieldset>
   <script src="./app.js"></script>
 </body>
 </html>
