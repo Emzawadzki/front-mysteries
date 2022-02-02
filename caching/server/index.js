@@ -11,11 +11,49 @@ const error404 = (res) => {
   res.end();
 };
 
+const logRequest = (req) => {
+  console.log(`[${serverName}] ${req.method} ${req.url}`);
+}
+
+let noCacheRequestsCounter = 0;
+let clientCacheRequestsCounter = 0;
+let serverCacheRequestsCounter = 0;
+
 const server = http.createServer((req, res) => {
+  logRequest(req);
   let url = req.url;
   switch (req.method) {
     case "GET":
       switch (req.url) {
+        case "/no-cache":
+          noCacheRequestsCounter++;
+          res.writeHead(200, {
+            "Content-Type": "application/json",
+          })
+          res.end(JSON.stringify({
+            count: noCacheRequestsCounter
+          }));
+          break;
+        case "/client-cache":
+          clientCacheRequestsCounter++;
+          res.writeHead(200, {
+            "Content-Type": "application/json",
+          })
+          res.end(JSON.stringify({
+            count: clientCacheRequestsCounter
+          }));
+          break;
+        case "/server-cache":
+          serverCacheRequestsCounter++;
+          res.writeHead(200, {
+            "Content-Type": "application/json",
+            "Cache-Control": "max-age=30"
+          })
+          res.end(JSON.stringify({
+            count: serverCacheRequestsCounter
+          }));
+          break;
+        // serve static files
         case "/":
           url = "index.html";
         default: {
